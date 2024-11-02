@@ -18,6 +18,15 @@ public class Order {
         this.isDelete = isDelete;
     }
 
+    public Order(int id, int idAccount, Date date, boolean status) {
+        this.id = id;
+        this.idAccount = idAccount;
+        this.date = date;
+        this.status = status;
+
+    }
+
+
     // Getters and Setters
     public int getId() {
         return id;

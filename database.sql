@@ -27,29 +27,36 @@ CREATE TABLE loai_san_pham
     id           INT AUTO_INCREMENT PRIMARY KEY,
     ten_san_pham VARCHAR(100) NOT NULL
 );
+
+-- tạo bảng kho
+create table kho
+(
+    id          int primary key auto_increment,
+    ten varchar(100),
+    ngay_nhap   DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    xoa         boolean  default false
+    
+
+);
+
 -- Tạo bảng SanPham
 CREATE TABLE san_pham
 (
     id               INT AUTO_INCREMENT PRIMARY KEY,
     loai_san_pham_id INT,
+    kho_id int,
     ten_san_pham     VARCHAR(100) NOT NULL,
     mo_ta            TEXT,
     gia              double       NOT NULL,
     anh              text,
     xoa              boolean default false,
-    FOREIGN KEY (loai_san_pham_id) REFERENCES loai_san_pham (id)
+    ngay_nhap datetime DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (loai_san_pham_id) REFERENCES loai_san_pham (id),
+    FOREIGN KEY (kho_id) REFERENCES kho (id)
+    
 );
--- tạo bảng kho
-create table kho
-(
-    id          int primary key auto_increment,
-    san_pham_id int,
-    so_luong    int,
-    ngay_nhap   DATETIME DEFAULT CURRENT_TIMESTAMP,
-    xoa         boolean  default false,
-    foreign key (san_pham_id) references san_pham (id)
 
-);
 -- Tạo bảng DonHang
 CREATE TABLE don_hang
 (
@@ -91,28 +98,28 @@ INSERT INTO loai_san_pham (ten_san_pham)
 VALUES ('Điện thoại'),
        ('Laptop'),
        ('Máy tính bảng');
-INSERT INTO san_pham (loai_san_pham_id, ten_san_pham, mo_ta, gia, anh)
-VALUES (1, 'Iphone 12 Pro Max', 'iPhone 12 Pro Max là thiết bị điện thoại với chip A14 Bionic', 12000000,
-        'https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-la-1-1-750x500.jpg'),
-       (2, 'Macbook Pro 16', 'Macbook Pro 16 2020 là laptop cao cấp với chip M1', 28000000,
-        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg'),
-       (2, 'Macbook Pro 16 PRO', 'Macbook Pro 16 2020 là laptop cao cấp với chip M1 HANG 99%', 22000000,
-        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg'),
-       (3, 'IPAD 9', ' WiFi 64GB', 6400000,
-        'https://cdn.tgdd.vn/Products/Images/522/247517/ipad-9-wifi-trang-1-750x500.jpg'),
-       (3, 'IPAD 11', 'WiFi 512GB', 9000000,
-        'https://cdn.tgdd.vn/Products/Images/522/325534/ipad-pro-13-inch-m4-lte-sliver-1-750x500.jpg'),
-       (1, 'XIAOMI 11', '14C 6GB/128GB', 12400000,
-        'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/329008/redmi-14c-xanh-duong-1-638618466993077110-750x500.jpg')
-;
+       
 -- Kho
-INSERT INTO kho (san_pham_id, so_luong)
-VALUES (1, 1000),
-       (2, 1500),
-       (3, 4000),
-       (4, 2000),
-       (5, 800),
-       (6, 1200);
+INSERT INTO kho (ten)
+VALUES ('kho_san_pham'),
+       ('kho_vat_tu')
+       ;
+       
+       
+INSERT INTO san_pham (loai_san_pham_id,kho_id, ten_san_pham, mo_ta, gia, anh,ngay_nhap)
+VALUES (1,1, 'Iphone 12 Pro Max', 'iPhone 12 Pro Max là thiết bị điện thoại với chip A14 Bionic', 12000000,
+        'https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-la-1-1-750x500.jpg','2012/12/12'),
+       (2,1, 'Macbook Pro 16', 'Macbook Pro 16 2020 là laptop cao cấp với chip M1', 28000000,
+        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg','2022/01/01'),
+       (2,1, 'Macbook Pro 16 PRO', 'Macbook Pro 16 2020 là laptop cao cấp với chip M1 HANG 99%', 22000000,
+        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg','2022/01/01'),
+       (3,1, 'IPAD 9', ' WiFi 64GB', 6400000,
+        'https://cdn.tgdd.vn/Products/Images/522/247517/ipad-9-wifi-trang-1-750x500.jpg','2022/01/01'),
+       (3,1, 'IPAD 11', 'WiFi 512GB', 9000000,
+        'https://cdn.tgdd.vn/Products/Images/522/325534/ipad-pro-13-inch-m4-lte-sliver-1-750x500.jpg','2022/01/01'),
+       (1,1, 'XIAOMI 11', '14C 6GB/128GB', 12400000,
+        'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/329008/redmi-14c-xanh-duong-1-638618466993077110-750x500.jpg','2022/01/01')
+;
 
 -- Chức Năng
 INSERT INTO chuc_nang (chuc_nang)
