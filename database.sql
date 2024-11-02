@@ -48,8 +48,9 @@ CREATE TABLE san_pham
     mo_ta            TEXT,
     gia              double       NOT NULL,
     anh              text,
-    xoa              boolean default false,
+    so_luong int ,
     ngay_nhap datetime DEFAULT CURRENT_TIMESTAMP,
+    xoa              boolean default false,
     FOREIGN KEY (loai_san_pham_id) REFERENCES loai_san_pham (id),
     FOREIGN KEY (kho_id) REFERENCES kho (id)
     
