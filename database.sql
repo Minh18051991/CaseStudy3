@@ -48,8 +48,9 @@ CREATE TABLE san_pham
     mo_ta            TEXT,
     gia              double       NOT NULL,
     anh              text,
-    xoa              boolean default false,
+    so_luong int ,
     ngay_nhap datetime DEFAULT CURRENT_TIMESTAMP,
+    xoa              boolean default false,
     FOREIGN KEY (loai_san_pham_id) REFERENCES loai_san_pham (id),
     FOREIGN KEY (kho_id) REFERENCES kho (id)
     
@@ -104,19 +105,19 @@ VALUES ('kho_san_pham'),
        ;
        
        
-INSERT INTO san_pham (loai_san_pham_id,kho_id, ten_san_pham, mo_ta, gia, anh,ngay_nhap)
+INSERT INTO san_pham (loai_san_pham_id,kho_id, ten_san_pham, mo_ta, gia, anh,so_luong,ngay_nhap)
 VALUES (1,1, 'Iphone 12 Pro Max', 'iPhone 12 Pro Max là thiết bị điện thoại với chip A14 Bionic', 12000000,
-        'https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-la-1-1-750x500.jpg','2012/12/12'),
+        'https://cdn.tgdd.vn/Products/Images/42/213031/iphone-12-xanh-la-1-1-750x500.jpg',2,'2012/12/12'),
        (2,1, 'Macbook Pro 16', 'Macbook Pro 16 2020 là laptop cao cấp với chip M1', 28000000,
-        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg','2022/01/01'),
+        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg',1,'2022/01/01'),
        (2,1, 'Macbook Pro 16 PRO', 'Macbook Pro 16 2020 là laptop cao cấp với chip M1 HANG 99%', 22000000,
-        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg','2022/01/01'),
+        'https://cdn.tgdd.vn/Products/Images/44/325306/apple-macbook-air-m2-2022-16gb-256gb-10gpu-2-750x500.jpg',3,'2022/01/01'),
        (3,1, 'IPAD 9', ' WiFi 64GB', 6400000,
-        'https://cdn.tgdd.vn/Products/Images/522/247517/ipad-9-wifi-trang-1-750x500.jpg','2022/01/01'),
+        'https://cdn.tgdd.vn/Products/Images/522/247517/ipad-9-wifi-trang-1-750x500.jpg',1,'2022/01/01'),
        (3,1, 'IPAD 11', 'WiFi 512GB', 9000000,
-        'https://cdn.tgdd.vn/Products/Images/522/325534/ipad-pro-13-inch-m4-lte-sliver-1-750x500.jpg','2022/01/01'),
+        'https://cdn.tgdd.vn/Products/Images/522/325534/ipad-pro-13-inch-m4-lte-sliver-1-750x500.jpg',2,'2022/01/01'),
        (1,1, 'XIAOMI 11', '14C 6GB/128GB', 12400000,
-        'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/329008/redmi-14c-xanh-duong-1-638618466993077110-750x500.jpg','2022/01/01')
+        'https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/42/329008/redmi-14c-xanh-duong-1-638618466993077110-750x500.jpg',1,'2022/01/01')
 ;
 
 -- Chức Năng
