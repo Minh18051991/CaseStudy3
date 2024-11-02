@@ -33,8 +33,6 @@ create table kho
 (
     id          int primary key auto_increment,
     ten varchar(100),
-    ngay_nhap   DATETIME DEFAULT CURRENT_TIMESTAMP,
-    
     xoa         boolean  default false
     
 
